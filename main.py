@@ -14,8 +14,9 @@ app = FastAPI(title="Fantasy LaLiga API")
 
 # Permitir CORS
 origins = [
-    "http://localhost:3000",  # tu frontend React
-    "http://127.0.0.1:3000"
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://pabloesmo,github.io"
 ]
 
 app.add_middleware(
