@@ -16,7 +16,8 @@ app = FastAPI(title="Fantasy LaLiga API")
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://pabloesmo,github.io"
+    "https://pabloesmo.github.io/FantasyTk",
+    "https://pabloesmo.github.io",
 ]
 
 app.add_middleware(
