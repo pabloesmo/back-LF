@@ -59,6 +59,23 @@ def get_db():
     finally:
         db.close()
 
+@app.on_event("startup")
+def on_startup():
+    # intentar conectar pero no petar la app si la BD no está disponible
+    import time
+    from sqlalchemy import text
+    for i in range(5):
+        try:
+            with engine.connect() as conn:
+                conn.execute(text("SELECT 1"))
+            print("DB OK")
+            break
+        except Exception as e:
+            print("DB no lista, reintentando...", e)
+            time.sleep(2)
+    else:
+        print("No se pudo conectar a la DB durante el arranque (seguiré corriendo).")
+
 @app.get("/jugadores")
 def buscar_jugadores(nombre: str = None, db: Session = Depends(get_db)):
     if nombre:
